@@ -1,0 +1,79 @@
+.box {
+  width: 25rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.box:hover {
+}
+
+.box .image {
+  padding: 1rem;
+  background: linear-gradient(15deg, #eee 30%, #fff 30.1%);
+}
+
+.box:hover .image {
+  transform: translateY(6rem);
+}
+
+.box .image img {
+  height: 25rem;
+}
+
+.box .icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1;
+  transform: translateY(-100%);
+}
+
+.box:hover .icons {
+  transform: translateY(0%);
+}
+
+.box .icons a {
+  color: var(--black);
+  font-size: 2.2rem;
+  padding: 1.3rem 1.5rem;
+}
+
+.box .icons a:hover {
+  background: var(--purple);
+  color: #fff;
+}
+
+.box .content {
+  background: #eee;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.box .content h3 {
+  font-size: 2rem;
+  color: var(--black);
+}
+
+.box .content .price {
+  font-size: 2.2rem;
+  color: var(--black);
+  padding-top: 1rem;
+}
+
+.box .content .price span {
+  font-size: 1.5rem;
+  color: var(--light-color);
+  text-decoration: line-through;
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: 70%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+}

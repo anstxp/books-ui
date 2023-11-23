@@ -1,0 +1,60 @@
+$black: var(--black);
+$light: var(--light-color);
+$purple: var(--purple);
+$white: white;
+
+.footer {
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+    .box {
+      h3 {
+        font-size: 2.2rem;
+        color: $black;
+        padding: 1rem 0;
+      }
+      a {
+        display: block;
+        font-size: 1.4rem;
+        color: $light;
+        padding: 1rem 0;
+        i {
+          color: $purple;
+          padding: 1rem 0;
+        }
+        &:hover {
+          i {
+            padding-right: 2rem;
+          }
+        }
+      }
+    }
+  }
+  .share {
+    padding: 1rem 0;
+    text-align: center;
+    a {
+      height: 5rem;
+      width: 5rem;
+      line-height: 5rem;
+      font-size: 2rem;
+      color: $white;
+      background: var(--purple);
+      margin: 0 0.3rem;
+      border-radius: 50%;
+      &:hover {
+        background: black;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .box-container {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    display: grid;
+    gap: 2rem;
+  }
+}

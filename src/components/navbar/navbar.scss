@@ -1,0 +1,21 @@
+.navbar {
+  text-align: center;
+  background: var(--purple);
+
+  a {
+    color: white;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+
+    &:hover {
+      background: var(--dark-color);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}

@@ -1,0 +1,91 @@
+$black: var(--black);
+$purple: var(--purple);
+
+.header {
+  background: white;
+  padding: 1.5rem 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: $black;
+
+    i {
+      color: $purple;
+    }
+  }
+
+  .search-form {
+    width: 50rem;
+    height: 5rem;
+    border: var(--border);
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    border-radius: .5rem;
+
+    input {
+      font-size: 1.6rem;
+      padding: 0 1.2rem;
+      height: 100%;
+      width: 100%;
+      text-transform: none;
+      color: $black;
+    }
+
+    label {
+      font-size: 2.5rem;
+      padding-right: 1.5rem;
+      color: $black;
+      cursor: pointer;
+    }
+  }
+
+  .icons {
+    div {
+      font-size: 2.5rem;
+      margin-left: 1.5rem;
+      color: $black;
+      cursor: pointer;
+
+      &:hover {
+        color: $purple;
+      }
+    }
+
+    a {
+      font-size: 2.5rem;
+      margin-left: 1.5rem;
+      color: $black;
+      cursor: pointer;
+
+      &:hover {
+        color: $purple;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #search-btn {
+    display: inline-block;
+  }
+  .header {
+    box-shadow: var(--box-shadow);
+    position: relative;
+  }
+  .header .search-form {
+    position: absolute;
+    top: -115%;
+    right: 90%;
+    box-shadow: var(--box-shadow);
+  }
+}
+
+#search-btn {
+  display: none;
+}

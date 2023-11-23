@@ -1,0 +1,33 @@
+$black: var(--black);
+$light-color: var(--light-color);
+
+.faq {
+  margin-bottom: -30px;
+
+  &-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: border 0.3s ease-in-out;
+
+    &:hover {
+      border: 2px solid #ccc;
+      z-index: 1000;
+    }
+  }
+
+  &-question {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: $black;
+    margin-bottom: 10px;
+  }
+
+  &-answer {
+    font-size: 1.5rem;
+    color: $light-color;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+}

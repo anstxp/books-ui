@@ -1,0 +1,61 @@
+$black: var(--black);
+$light: var(--light-color);
+
+.home {
+  .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10rem;
+    width: 100%;
+
+    .content {
+      flex: 1 1 50rem;
+
+      h3 {
+        color: $black;
+        font-size: 4.5rem;
+      }
+      p {
+        color: $light;
+        font-size: 1.4rem;
+        line-height: 2;
+        padding: 1rem 0;
+      }
+    }
+    .books-slider {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      flex: 1 1 42rem;
+      text-align: center;
+      margin-top: 2rem;
+
+      a {
+        img {
+          height: 25rem;
+          width: 16rem;
+        }
+        &:hover {
+          img {
+            transform: scale(0.9);
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .home {
+    .row {
+      gap: 1.5rem;
+      .content {
+        text-align: center;
+        h3 {
+          font-size: 3.5rem;
+        }
+      }
+    }
+  }
+}
