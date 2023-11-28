@@ -1,0 +1,28 @@
+.discountComponent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  color: var(--purple);
+  font-size: 1.2rem;
+
+  h3{
+    color: var(--black)
+  }
+
+  span{
+    color: var(--dark-color)
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .discountComponent {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 0.7em;
+    &__title {
+      width: 90%;
+      text-align: center;
+    }
+  }
+}

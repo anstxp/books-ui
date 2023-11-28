@@ -25,9 +25,10 @@ $light-color: var(--light-color);
   }
 
   &-answer {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: $light-color;
     margin-top: 10px;
     transition: background-color 0.3s ease-in-out;
+    text-transform: none;
   }
 }

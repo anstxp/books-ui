@@ -1,11 +1,11 @@
 <script setup>
 import FeedbackFormComponent from "@/components/feedback-form/feedback-form-component.vue";
-import ContactsComponent from "@/components/contacts/contacts-component.vue";
+import ContactsComponent from "@/components/UI/contacts/contacts-component.vue";
 import HeaderComponent from "@/components/header/header-component.vue";
 import BottomNavbarComponent from "@/components/bottom-navbar/bottom-navbar-component.vue";
 import NavbarComponent from "@/components/navbar/navbar-component.vue";
 import FooterComponent from "@/components/footer/footer-component.vue";
-import FeaturesComponent from "@/components/features/features-component.vue";
+import FeaturesComponent from "@/components/UI/features/features-component.vue";
 </script>
 
 <template>

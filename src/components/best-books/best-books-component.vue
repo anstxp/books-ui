@@ -14,30 +14,36 @@
         <a href="#" class="btn">shop now</a>
       </div>
       <div class="books-slider">
-        <div v-for="book in books" :key="book.id">
-          <a href="#"><img :src="book.imageUrl" :alt="book.title" /></a>
+        <div v-for="(book, index) in books.slice(0, 6)" :key="index">
+          <router-link :to="'/book/' + book.urlHadle"
+            ><img :src="book.imageUrl" :alt="book.title"
+          /></router-link>
         </div>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script>
 import axios from "axios";
+export default {
+  data() {
+    return {
+      books: [],
+    };
+  },
 
-const books = ref([]);
-
-onMounted(async () => {
-  try {
-    const response = await axios.get(
-      "http://localhost:5154/api/Books?isAscending=true&pageNumber=1&pageSize=1000"
-    );
-    books.value = response.data; // Assuming your API returns an array of books
-  } catch (error) {
-    console.error("Error fetching books:", error);
-  }
-});
+  async mounted() {
+    try {
+      const response = await axios.get(
+        "http://localhost:5154/api/Books?isAscending=true&pageNumber=1&pageSize=1000"
+      );
+      this.books = response.data;
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  },
+};
 </script>
 
 <style scoped lang="sass">

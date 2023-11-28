@@ -1,0 +1,50 @@
+.box {
+  width: 20rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.box .image {
+  padding: 0.2rem;
+}
+
+.box .image img {
+  height: 22rem;
+  max-width: 100%;
+}
+
+.box .content {
+  background: #fff;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.box .content h3 {
+  font-size: 1.6rem;
+  color: var(--black);
+}
+
+.box .content span {
+  font-size: 1.5rem;
+  color: var(--black);
+}
+
+.box .content .price {
+  font-size: 1.5rem;
+  color: var(--black);
+  padding-top: 1rem;
+}
+
+.box .content .price span {
+  font-size: 1.5rem;
+  color: var(--light-color);
+  text-decoration: line-through;
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: 70%;
+    margin: 0.5rem 0;
+  }
+}

@@ -10,6 +10,6 @@
   </nav>
 </template>
 
-<style scoped lang="scss">
-@import "bottom-navbar-style";
+<style scoped lang="sass">
+@import "bottom-navbar-style"
 </style>

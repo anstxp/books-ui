@@ -1,62 +1,56 @@
 <template>
   <section class="featured" id="featured">
-    <div class="featured-slider">
+    <div class="featured-slider" v-if="display === 'grid'">
       <BookItemComponent
         v-for="book in books"
         :key="book.id"
         :book="book"
       ></BookItemComponent>
     </div>
+    <div v-else>
+      <div>
+        <BookLarge
+          v-for="book in books"
+          :key="book.id"
+          :book="book"
+        ></BookLarge>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
-import BookItemComponent from "@/components/book-item/book-item-component.vue";
+import BookItemComponent from "@/components/book-item-small/book-item-component.vue";
+import BookLarge from "@/components/book-item-large/book-item-component.vue";
 
 export default {
   components: {
     BookItemComponent,
+    BookLarge,
   },
-  data() {
-    return {
-      books: [],
-    };
+  computed: {
+    display() {
+      return this.$store.state.booksModule.displayMode;
+    },
+    isAdmin() {
+      return this.$store.state.user.roles.includes("admin");
+    },
+    books() {
+      return this.$store.state.booksModule.books;
+    },
   },
-  mounted() {
+  created() {
+    if (this.isAdmin) {
+      this.$store.commit("set_display", "list");
+    }
     this.fetchBooks();
   },
   methods: {
-    async fetchBooks() {
-      try {
-        const response = await fetch(
-          "http://localhost:5154/api/Books?isAscending=true&pageNumber=1&pageSize=1000"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch books");
-        }
-        // Розпаковуємо отримані дані у форматі JSON
-        const data = await response.json();
-        // Оновлюємо масив книг
-        this.books = data;
-      } catch (error) {
-        console.error("Error fetching books:", error);
-      }
+    fetchBooks() {
+      this.$store.dispatch("fetchBooks");
     },
   },
 };
 </script>
 
-<style scoped lang="scss">
-.featured .featured-slider {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-  gap: 2rem;
-}
-@media (max-width: 768px) {
-  .featured .featured-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

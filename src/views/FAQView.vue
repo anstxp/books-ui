@@ -3,6 +3,7 @@
   <NavbarComponent />
   <BottomNavbarComponent />
   <FaqComponent :faqList="faqListProp" />
+  <NewsletterComponent />
   <FooterComponent />
 </template>
 
@@ -12,9 +13,11 @@ import HeaderComponent from "@/components/header/header-component.vue";
 import NavbarComponent from "@/components/navbar/navbar-component.vue";
 import BottomNavbarComponent from "@/components/bottom-navbar/bottom-navbar-component.vue";
 import FooterComponent from "@/components/footer/footer-component.vue";
+import NewsletterComponent from "@/components/UI/newsletter/newsletter-component.vue";
 
 export default {
   components: {
+    NewsletterComponent,
     FooterComponent,
     BottomNavbarComponent,
     NavbarComponent,
@@ -25,26 +28,39 @@ export default {
     return {
       faqListProp: [
         {
-          question: "Q. How can I find a book that is no longer in print?",
+          question: "Are there any products I cannot cancel or return?",
           answer:
-            "A. If you are looking for a title which is now out-of-print, " +
-            "try an out-of-print finding service such as Abe Books, Book Finder or Zardoz.",
+            "You cannot cancel or return the following items:\n" +
+            "\n" +
+            "audio, video or computer software products that have been removed from the sealed packaging in which they were delivered\n" +
+            "any bespoke or personalised items which have been created specifically for you\n" +
+            "Penguin Prints\n" +
+            "Isokon Penguin Donkeys\n" +
+            "Wooden Bookends",
         },
         {
-          question: "Q. How can I contact an author?",
+          question: "Do I need to bring anything with me to the workshop??",
           answer:
-            "A. We cannot give out personal mail or email addresses for our authors. " +
-            "However, all author mail is forwarded directly to our authors via our publicity departments.",
+            "Writing materials will be provided. If you have a favourite notepad, " +
+            "or prefer to write on a laptop, please do bring this with you. " +
+            "Alan also asks that you bring with you a favourite toy from your " +
+            "childhood, or a toy that belongs to your child or a relative, " +
+            "along with one of your favourite picture books.",
         },
         {
-          question:
-            "Q. There is an error in my book or ebook; who can I contact?",
+          question: "How do I cancel my order?",
           answer:
-            "A. For physical books it is best if you return the book to the original bookshop " +
-            "from which it was purchased; they should be happy to exchange it for a perfect copy. " +
-            "If you have any difficulty with this then please return the cover and title page " +
-            "of the book to us. NB: If the value of the book is over £20, you will need to return " +
-            "the whole book.",
+            "You may cancel your order at any time from placing your order until 14 days " +
+            "after the date of delivery. Please see the 'Cancelling Your Order' " +
+            "section of our  Terms and Conditions for full details.",
+        },
+        {
+          question: "What is your returns policy?",
+          answer:
+            "You must return any unwanted products in original packaging within 14 days " +
+            "of delivery. Returns after this time will not be accepted. " +
+            "Please see our Delivery and Returns page for details. Returns will be " +
+            "at your own cost. ",
         },
       ],
     };

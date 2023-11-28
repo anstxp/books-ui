@@ -2,4 +2,6 @@
   <router-view />
 </template>
 
-<style></style>
+<style lang="css">
+@import "/public/style.css";
+</style>

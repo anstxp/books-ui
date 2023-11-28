@@ -1,0 +1,54 @@
+.reviews {
+  /* Стилі для контейнера відгуків */
+}
+
+.review-box {
+  /* Стилі для окремого блоку відгуку */
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 20px;
+  //border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-box:hover {
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.user-images {
+  margin-right: 20px;
+}
+
+.profile-picture {
+  width: 60px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.review-details {
+  /* Стилі для блоку з деталями відгуку */
+}
+
+.user-name {
+  /* Стилі для імені користувача */
+  font-size: 1.8rem;
+  margin-bottom: 3px;
+  color: var(--black);
+}
+
+.book-title {
+  /* Стилі для назви книги */
+  font-size: 1.5rem;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.comment-content {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--light-color);
+}
