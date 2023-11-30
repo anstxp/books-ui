@@ -1,30 +1,27 @@
+<script>
+import HeaderComponent from "@/components/nav-components/header/header-component.vue";
+import NavbarComponent from "@/components/nav-components/navbar/navbar-component.vue";
+import BottomNavbarComponent from "@/components/nav-components/bottom-navbar/bottom-navbar-component.vue";
+import EditAuthor from "@/components/author-components/edit-author-component.vue";
+import FooterComponent from "@/components/nav-components/footer/footer-component.vue";
+export default {
+  name: "EditAuthorView",
+  components: {
+    FooterComponent,
+    EditAuthor,
+    BottomNavbarComponent,
+    HeaderComponent,
+    NavbarComponent,
+  },
+};
+</script>
+
 <template>
   <HeaderComponent />
   <NavbarComponent />
   <BottomNavbarComponent />
-  <CollectionListComponent />
+  <EditAuthor />
   <FooterComponent />
 </template>
 
-<script>
-import { defineComponent } from "vue";
-import HeaderComponent from "@/components/nav-components/header/header-component.vue";
-import NavbarComponent from "@/components/nav-components/navbar/navbar-component.vue";
-import BottomNavbarComponent from "@/components/nav-components/bottom-navbar/bottom-navbar-component.vue";
-import FooterComponent from "@/components/nav-components/footer/footer-component.vue";
-import CollectionListComponent from "@/components/collections/collection-list.vue";
-
-export default defineComponent({
-  components: {
-    CollectionListComponent,
-    FooterComponent,
-    BottomNavbarComponent,
-    NavbarComponent,
-    HeaderComponent,
-  },
-
-  data() {
-    return {};
-  },
-});
-</script>
+<style scoped lang="scss"></style>

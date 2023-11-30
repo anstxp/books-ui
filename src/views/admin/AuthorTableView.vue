@@ -1,37 +1,21 @@
-<template>
-  <HeaderComponent />
-  <NavbarComponent />
-  <BottomNavbarComponent />
-  <SmallHeaderView :content="contentProp" />
-  <OptionsAuthorsComponent />
-  <section>
-    <AuthorItemComponent
-      v-for="author in authors"
-      :key="author.id"
-      :author="author"
-    ></AuthorItemComponent>
-  </section>
-  <FooterComponent />
-</template>
-
 <script>
-import { defineComponent } from "vue";
 import HeaderComponent from "@/components/nav-components/header/header-component.vue";
 import NavbarComponent from "@/components/nav-components/navbar/navbar-component.vue";
 import BottomNavbarComponent from "@/components/nav-components/bottom-navbar/bottom-navbar-component.vue";
 import FooterComponent from "@/components/nav-components/footer/footer-component.vue";
+import AuthorBox from "@/components/author-components/author-box.vue";
 import SmallHeaderView from "@/components/UI/header-view/small-header-view.vue";
-import AuthorItemComponent from "@/components/author-components/author-books-component.vue";
 import OptionsAuthorsComponent from "@/components/options/options-authors-component.vue";
 
-export default defineComponent({
+export default {
+  name: "AuthorTableView",
   components: {
-    AuthorItemComponent,
     SmallHeaderView,
+    AuthorBox,
+    HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,
     NavbarComponent,
-    HeaderComponent,
     OptionsAuthorsComponent,
   },
   data() {
@@ -59,5 +43,17 @@ export default defineComponent({
       this.$store.dispatch("fetchAuthors");
     },
   },
-});
+};
 </script>
+
+<template>
+  <HeaderComponent />
+  <NavbarComponent />
+  <BottomNavbarComponent />
+  <SmallHeaderView :content="contentProp" />
+  <OptionsAuthorsComponent />
+  <AuthorBox :authors="authors"></AuthorBox>
+  <FooterComponent />
+</template>
+
+<style scoped lang="scss"></style>

@@ -1,7 +1,7 @@
 <template>
-  <section class="collection-card">
-    <h2>{{ collection.name }}</h2>
-    <p>{{ collection.description }}</p>
+  <section class="category-card">
+    <h2>{{ category.name }}</h2>
+    <p>{{ category.description }}</p>
   </section>
   <swiper
     :slides-per-view="1"
@@ -11,7 +11,7 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide v-for="book in collection.books" :key="book.id">
+    <swiper-slide v-for="book in category.books" :key="book.id">
       <BookItemComponent :book="book"></BookItemComponent>
     </swiper-slide>
   </swiper>
@@ -28,7 +28,7 @@ export default {
     SwiperSlide,
   },
   props: {
-    collection: {
+    category: {
       type: Object,
       required: true,
     },
@@ -49,17 +49,17 @@ export default {
 </script>
 
 <style scoped>
-.collection-card {
+.category-card {
   padding: 20px;
   border-radius: 10px;
   color: var(--black);
 }
 
-.collection-card h2 {
+.category-card h2 {
   font-size: 1.7rem;
 }
 
-.collection-card p {
+.category-card p {
   text-transform: none;
   font-size: 1.4rem;
   color: var(--light-color);

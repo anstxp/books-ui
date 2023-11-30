@@ -15,7 +15,7 @@
         placeholder="enter your username"
         v-model="user.username"
       />
-      <div class="error-message" v-if="msg.username && showErrors">
+      <div class="error-message">
         {{ msg.username }}
       </div>
       <span>name</span>
@@ -26,7 +26,7 @@
         placeholder="enter your name"
         v-model="user.name"
       />
-      <div class="error-message" v-if="msg.name && showErrors">
+      <div class="error-message">
         {{ msg.name }}
       </div>
       <span>surname</span>
@@ -37,7 +37,7 @@
         placeholder="enter your surname"
         v-model="user.surname"
       />
-      <div class="error-message" v-if="msg.surname && showErrors">
+      <div class="error-message">
         {{ msg.surname }}
       </div>
       <span>gender</span>
@@ -65,7 +65,7 @@
           value="other"
         />Other</label
       >
-      <div class="error-message" v-if="msg.gender && showErrors">
+      <div class="error-message">
         {{ msg.gender }}
       </div>
       <span>birthday date</span>
@@ -76,7 +76,7 @@
         class="box"
         max="2013-12-30"
       />
-      <div class="error-message" v-if="msg.date && showErrors">
+      <div class="error-message">
         {{ msg.date }}
       </div>
       <span>phone number</span>
@@ -89,7 +89,7 @@
         placeholder="enter your phone number"
         v-model="user.phone"
       />
-      <div class="error-message" v-if="msg.phone && showErrors">
+      <div class="error-message">
         {{ msg.phone }}
       </div>
       <span>email</span>
@@ -100,7 +100,7 @@
         placeholder="enter your email"
         v-model="user.email"
       />
-      <div class="error-message" v-if="msg.email && showErrors">
+      <div class="error-message">
         {{ msg.email }}
       </div>
       <span>password</span>
@@ -111,7 +111,7 @@
         placeholder="enter your password"
         v-model="user.password"
       />
-      <div class="error-message" v-if="msg.password && showErrors">
+      <div class="error-message">
         {{ msg.password }}
       </div>
       <span>favourite genre</span>
@@ -129,7 +129,7 @@
       </select>
       <span>add profile picture</span>
       <input type="file" ref="fileInput" class="box" accept="image/*" />
-      <div class="error-message" v-if="msg.file && showErrors">
+      <div class="error-message" v-if="msg.file">
         {{ msg.file }}
       </div>
       <input type="submit" value="submit" formaction="#" class="btn" />
@@ -151,30 +151,29 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        name: "",
-        surname: "",
-        gender: "",
-        date: "",
-        phone: "",
-        email: "",
-        password: "",
-        genre: "not selected",
-        file: "",
-        checked: false,
+        // username: "",
+        // name: "",
+        // surname: "",
+        // gender: "",
+        // date: "",
+        // phone: "",
+        // email: "",
+        // password: "",
+        // genre: "not selected",
+        // file: "",
+        // checked: false,
       },
-      users: [],
       msg: {
-        username: "",
-        name: "",
-        surname: "",
-        gender: "",
-        date: "",
-        phone: "",
-        email: "",
-        password: "",
-        file: "",
-        signup: "",
+        // username: "",
+        // name: "",
+        // surname: "",
+        // gender: "",
+        // date: "",
+        // phone: "",
+        // email: "",
+        // password: "",
+        // file: "",
+        // signup: "",
       },
       isFormValid: false,
       showErrors: false,
@@ -182,115 +181,35 @@ export default {
   },
   watch: {
     "user.username": function () {
-      this.validateUserName();
+      this.msg.username = this.validateName(this.user.username);
     },
     "user.name": function () {
-      this.validateName();
+      this.msg.name = this.validateName(this.user.name);
     },
     "user.surname": function () {
-      this.validateSurname();
+      this.msg.surname = this.validateName(this.user.surname);
     },
     "user.gender": function () {
-      this.validateGender();
+      this.msg.gender = this.validateForEmpty(this.user.gender);
     },
     "user.date": function () {
-      this.validateDate();
+      this.msg.date = this.validateForEmpty(this.user.date);
     },
     "user.phone": function () {
-      this.validatePhone();
+      this.msg.phone = this.validatePhone(this.user.phone);
     },
     "user.email": function () {
-      this.validateEmail();
+      this.msg.email = this.validateEmail(this.user.email);
     },
     "user.password": function () {
-      this.validatePassword();
+      this.msg.password = this.validatePassword(this.user.password);
+    },
+    "user.file": function () {
+      this.msg.file = this.validateFile(true, this.user.file);
     },
   },
   methods: {
-    validateUserName() {
-      if (/^[a-zA-Z]{3,}$/.test(this.user.username)) {
-        this.msg.username = "";
-      } else {
-        this.msg.username = "name must be at least 3 characters";
-      }
-    },
-    validateName() {
-      if (/^[a-zA-Z]{3,}$/.test(this.user.name)) {
-        this.msg.name = "";
-      } else {
-        this.msg.name = "name must be at least 3 characters";
-      }
-    },
-    validateSurname() {
-      if (/^[a-zA-Z]{3,}$/.test(this.user.surname)) {
-        this.msg.surname = "";
-      } else {
-        this.msg.surname = "surname must be at least 3 characters";
-      }
-    },
-    validateGender() {
-      if (this.user.gender === "") {
-        this.msg.gender = "Gender is required";
-      } else {
-        this.msg.gender = "";
-      }
-    },
-    validateDate() {
-      if (this.user.date === "") {
-        this.msg.date = "Please enter your birthdate";
-      } else {
-        this.msg.date = "";
-      }
-    },
-    validatePhone() {
-      if (!/^\+380 \(\d{2}\) \d{3}-\d{2}-\d{2}$/.test(this.user.phone)) {
-        this.msg.phone = "Phone number is required";
-      } else {
-        this.msg.phone = "";
-      }
-    },
-    validateEmail() {
-      if (/^\w+(-?\w+)*@\w+(-?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
-        this.msg.email = "";
-      } else {
-        this.msg.email = "Invalid Email Address";
-      }
-    },
-    validatePassword() {
-      if (
-        /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
-          this.user.password
-        )
-      ) {
-        this.msg.password = "";
-      } else {
-        this.msg.password =
-          "Password must contain an uppercase letter, a digit, and a special character";
-      }
-    },
-    validateFile() {
-      const file = this.$refs.fileInput.files[0]; // Отримуємо файл з інпута
-
-      if (file && file.size > 10 * 1024 * 1024) {
-        // Перевіряємо розмір файлу (10 МБ = 10 * 1024 * 1024 байт)
-        // Файл перевищує розмір
-        this.msg.file = "File size should not exceed 10MB";
-      } else {
-        this.msg.file = "";
-      }
-    },
-
     handleSubmission() {
-      this.showErrors = true;
-      this.validateName();
-      this.validateSurname();
-      this.validateGender();
-      this.validateDate();
-      this.validatePhone();
-      this.validateEmail();
-      this.validatePassword();
-      this.validateFile();
-
       if (Object.values(this.msg).every((message) => message === "")) {
         this.handleFileUpload().then(() => {
           this.registerUser();
@@ -342,29 +261,18 @@ export default {
       });
     },
     registerUser() {
-      const dateString = this.user.date;
-      const date = new Date(dateString);
-
-      const year = date.getFullYear(); // Рік (наприклад, 2013)
-      const month = date.getMonth() + 1; // Місяць (у JavaScript місяці починаються з 0, тому додаємо 1)
-      const day = date.getDate(); // День (наприклад, 12)
-
-      const formattedDate = `${year}-${month.toString().padStart(2, "0")}-${day
-        .toString()
-        .padStart(2, "0")}`;
       const UserData = {
         userName: this.user.username,
         phoneNumber: this.user.phone,
         email: this.user.email,
         firstName: this.user.name,
         lastName: this.user.surname,
-        birthdate: formattedDate,
+        birthdate: this.formatDate(this.user.date),
         gender: this.user.gender,
         genre: this.user.genre,
         profilePhotoUrl: this.user.file,
         password: this.user.password,
       };
-      console.log(UserData);
 
       axios
         .post("http://localhost:5154/api/Auth/Register", UserData)

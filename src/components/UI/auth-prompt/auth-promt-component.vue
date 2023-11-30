@@ -13,7 +13,7 @@
 <style>
 .auth-component {
   margin-top: 15px;
-  background: url("/public/auth-promt.jpg") no-repeat fixed center;
+  background: url("/public/slide5.webp") no-repeat fixed center;
   background-size: cover;
 }
 

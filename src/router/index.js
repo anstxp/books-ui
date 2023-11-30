@@ -15,6 +15,11 @@ import CollectionsView from "@/views/CollectionsView.vue";
 import CreateBlogView from "@/views/CreateBlogView.vue";
 import SearchResultsView from "@/views/SearchResultsView.vue";
 import EditBookView from "@/views/admin/EditBookView.vue";
+import UpdateUserProfile from "@/views/UpdateUserProfile.vue";
+import CreateBookView from "@/views/admin/CreateBookView.vue";
+import AuthorTableView from "@/views/admin/AuthorTableView.vue";
+import EditAuthorView from "@/views/admin/EditAuthorView.vue";
+import createAuthorView from "@/views/admin/CreateAuthorView.vue";
 
 const routes = [
   {
@@ -69,7 +74,7 @@ const routes = [
   },
   {
     path: "/authors",
-    name: "Authors",
+    name: "AuthorsView",
     component: AuthorsView,
   },
   {
@@ -92,6 +97,36 @@ const routes = [
     path: "/edit-book",
     name: "EditBook",
     component: EditBookView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/update-profile",
+    name: "UpdateProfile",
+    component: UpdateUserProfile,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/create-book",
+    name: "Create Book",
+    component: CreateBookView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/authors-table",
+    name: "Authors",
+    component: AuthorTableView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/edit-author",
+    name: "Update Author",
+    component: EditAuthorView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/create-author",
+    name: "Create Author",
+    component: createAuthorView,
     meta: { requiresAuth: true },
   },
 ];

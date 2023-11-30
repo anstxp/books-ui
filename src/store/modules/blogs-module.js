@@ -9,6 +9,9 @@ const blogsModule = {
     set_blogs(state, blogs) {
       state.blogs = blogs;
     },
+    delete_blog(state, id) {
+      state.blogs = state.blogs.filter((blog) => blog.id !== id);
+    },
   },
   actions: {
     async fetchBlogs({ commit }) {
@@ -26,28 +29,24 @@ const blogsModule = {
         console.error("Error fetching blogs:", error);
       }
     },
-    async createBlog({ commit }, userData, token) {
+    async deleteBlog({ commit }, { id, token }) {
       try {
-        const response = await axios.post(
-          "http://localhost:5154/api/BlogPosts",
-          userData,
+        const response = await axios.delete(
+          `http://localhost:5154/api/BlogPosts/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json", // При необхідності вказуйте тип контенту
             },
           }
         );
         if (response.status === 200) {
-          commit("set_personalBlog", { userData: response.data });
+          console.log("Book was successfully deleted");
+          commit("delete_blog", id);
           await router.push("/blog");
-          return "BlogPost added successfully!";
-        } else {
-          throw new Error("Something went wrong, try again");
         }
       } catch (error) {
-        console.error(error);
-        throw new Error("Error adding post :(");
+        console.error("Error deleting book:", error);
+        throw error;
       }
     },
   },

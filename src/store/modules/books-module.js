@@ -34,7 +34,6 @@ const booksModule = {
   actions: {
     async fetchBooks({ state, commit }) {
       try {
-        console.log(state.selectedSort);
         const response = await fetch(
           `http://localhost:5154/api/Books?sortBy=${state.selectedSort}&isAscending=true&pageNumber=1&pageSize=1000`
         );

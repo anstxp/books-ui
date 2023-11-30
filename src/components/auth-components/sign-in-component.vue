@@ -64,39 +64,20 @@ export default {
   },
   watch: {
     "user.email": function () {
-      this.validateEmail();
+      this.msg.email = this.validateEmail(this.user.email);
     },
     "user.password": function () {
-      this.validatePassword();
+      this.msg.password = this.validatePassword(this.user.password);
     },
   },
   methods: {
-    validateEmail() {
-      if (/^\w+(-?\w+)*@\w+(-?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
-        this.msg.email = "";
-      } else {
-        this.msg.email = "Invalid Email Address";
-      }
-    },
-    validatePassword() {
-      if (
-        /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
-          this.user.password
-        )
-      ) {
-        this.msg.password = "";
-      } else {
-        this.msg.password =
-          "Password must contain an uppercase letter, a digit, and a special character";
-      }
-    },
     handleSubmission() {
       this.showErrors = true;
-      this.validateEmail();
-      this.validatePassword();
+      this.msg.email = this.validateEmail(this.user.email);
+      this.msg.password = this.validatePassword(this.user.password);
 
       if (Object.values(this.msg).every((message) => message === "")) {
-        this.registerUser();
+        this.loginUser();
         this.user = {
           email: "",
           password: "",
@@ -105,12 +86,11 @@ export default {
         this.showErrors = false;
       }
     },
-    async registerUser() {
+    async loginUser() {
       const UserData = {
         email: this.user.email,
         password: this.user.password,
       };
-      console.log(UserData);
 
       try {
         await this.$store.dispatch("loginUser", UserData);

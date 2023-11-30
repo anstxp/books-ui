@@ -1,10 +1,19 @@
+import axios from "axios";
+
 const authorsModule = {
   state: {
     authors: [],
+    selectedSort: "",
   },
   mutations: {
     set_authors(state, authors) {
       state.authors = authors;
+    },
+    delete_author(state, id) {
+      state.authors = state.authors.filter((author) => author.id !== id);
+    },
+    set_currentAuthor(state, id) {
+      state.currentAuthor = id;
     },
   },
   actions: {
@@ -21,6 +30,25 @@ const authorsModule = {
         return authors;
       } catch (error) {
         console.error("Error fetching authors:", error);
+      }
+    },
+    async deleteAuthor({ commit }, { id, token }) {
+      try {
+        console.log(id + token);
+        const response = await axios.delete(
+          `http://localhost:5154/api/Authors/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          console.log("Author was successfully deleted");
+          commit("delete_author", id);
+        }
+      } catch (error) {
+        console.log("Error deleting author");
       }
     },
   },
