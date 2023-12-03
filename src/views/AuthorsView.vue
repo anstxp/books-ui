@@ -3,7 +3,6 @@
   <NavbarComponent />
   <BottomNavbarComponent />
   <SmallHeaderView :content="contentProp" />
-  <OptionsAuthorsComponent />
   <section>
     <AuthorItemComponent
       v-for="author in authors"
@@ -22,8 +21,6 @@ import BottomNavbarComponent from "@/components/nav-components/bottom-navbar/bot
 import FooterComponent from "@/components/nav-components/footer/footer-component.vue";
 import SmallHeaderView from "@/components/UI/header-view/small-header-view.vue";
 import AuthorItemComponent from "@/components/author-components/author-books-component.vue";
-import OptionsAuthorsComponent from "@/components/options/options-authors-component.vue";
-
 export default defineComponent({
   components: {
     AuthorItemComponent,
@@ -32,7 +29,6 @@ export default defineComponent({
     BottomNavbarComponent,
     NavbarComponent,
     HeaderComponent,
-    OptionsAuthorsComponent,
   },
   data() {
     return {

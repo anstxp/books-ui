@@ -4,7 +4,7 @@
     <p>{{ category.description }}</p>
   </section>
   <swiper
-    :slides-per-view="1"
+    :slides-per-view="5"
     :space-between="1"
     navigation
     :pagination="{ clickable: true }"

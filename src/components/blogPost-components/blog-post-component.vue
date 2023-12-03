@@ -1,5 +1,5 @@
 <template>
-  <section class="blog-post">
+  <div class="blog-post">
     <button
       v-if="isAdmin"
       class="light-button"
@@ -13,6 +13,7 @@
       <img v-if="post.imageUrl !== ''" :src="post.imageUrl" alt="Blog Image" />
     </div>
     <div class="post-content">
+      <p>{{ post.book }}</p>
       <p>{{ post.content }}</p>
     </div>
     <div class="author-info">
@@ -27,7 +28,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -78,6 +79,12 @@ export default {
 <style scoped>
 .blog-post {
   position: relative;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 15px auto;
+  padding: 30px;
 }
 
 .post-header {
@@ -91,8 +98,9 @@ export default {
 }
 
 .post-header img {
+  height: 350px;
   width: 100%;
-  height: auto;
+  object-fit: cover;
   margin: 20px auto;
   display: block;
 }
@@ -106,7 +114,7 @@ export default {
 }
 
 .post-content img {
-  max-height: 500px;
+  max-height: 100px;
   width: auto;
   margin: 20px auto;
   display: block;
@@ -114,9 +122,9 @@ export default {
 
 .post-content p {
   line-height: 1.5;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--black);
-  //text-align: justify;
+  text-align: justify;
   text-transform: none;
 }
 

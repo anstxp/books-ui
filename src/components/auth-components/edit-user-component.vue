@@ -193,6 +193,15 @@ export default {
   },
   methods: {
     handleSubmission() {
+      this.msg.userName = this.validateName(this.user.username);
+      this.msg.firstName = this.validateName(this.user.firstName);
+      this.msg.lastName = this.validateName(this.user.lastName);
+      this.msg.gender = this.validateForEmpty(this.user.gender);
+      this.msg.date = this.validateForEmpty(this.user.date);
+      this.msg.phoneNumber = this.validatePhone(this.user.phoneNumber);
+      this.msg.email = this.validateEmail(this.user.email);
+      this.msg.file = this.validateFile(false, this.$refs.fileInput.files[0]);
+
       this.msg.gender = this.validateForEmpty(this.user.gender);
       if (Object.values(this.msg).every((message) => message === "")) {
         this.handleFileUpload().then(async () => {
@@ -230,7 +239,7 @@ export default {
         });
       }
     },
-    handleFileUpload() {
+    async handleFileUpload() {
       return new Promise((resolve, reject) => {
         const file = this.$refs.fileInput.files[0];
         if (file == null) {

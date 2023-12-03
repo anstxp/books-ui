@@ -1,19 +1,21 @@
 <template>
-  <section class="featured" id="featured">
-    <div class="featured-slider" v-if="display === 'grid'">
-      <BookItemComponent
-        v-for="book in books"
-        :key="book.id"
-        :book="book"
-      ></BookItemComponent>
-    </div>
-    <div v-else>
-      <div>
-        <BookLarge
+  <section>
+    <div class="featured" id="featured">
+      <div class="featured-slider" v-if="display === 'grid'">
+        <BookItemComponent
           v-for="book in books"
           :key="book.id"
           :book="book"
-        ></BookLarge>
+        ></BookItemComponent>
+      </div>
+      <div v-else>
+        <div>
+          <BookLarge
+            v-for="book in books"
+            :key="book.id"
+            :book="book"
+          ></BookLarge>
+        </div>
       </div>
     </div>
   </section>
@@ -36,10 +38,11 @@ export default {
       return this.$store.state.user.roles.includes("admin");
     },
     books() {
+      this.fetchBooks();
       return this.$store.state.booksModule.books;
     },
   },
-  created() {
+  mounted() {
     if (this.isAdmin) {
       this.$store.commit("set_display", "list");
     }
@@ -52,5 +55,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

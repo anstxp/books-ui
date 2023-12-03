@@ -20,6 +20,8 @@ import CreateBookView from "@/views/admin/CreateBookView.vue";
 import AuthorTableView from "@/views/admin/AuthorTableView.vue";
 import EditAuthorView from "@/views/admin/EditAuthorView.vue";
 import createAuthorView from "@/views/admin/CreateAuthorView.vue";
+import ShoppingCartView from "@/views/ShoppingCartView.vue";
+import OrdersView from "@/views/admin/OrdersView.vue";
 
 const routes = [
   {
@@ -63,14 +65,14 @@ const routes = [
     component: BookDetailsView,
   },
   {
-    path: "/search/:searchInput", // Змінивши шлях на прийнятний
+    path: "/search/:searchInput",
     name: "Search",
     component: SearchResultsView,
   },
   {
     path: "/user-home",
-    component: UserHome, // Ваш компонент для головної сторінки
-    meta: { requiresAuth: true }, // Позначаємо, що потрібна авторизація для цієї сторінки
+    component: UserHome,
+    meta: { requiresAuth: true },
   },
   {
     path: "/authors",
@@ -127,6 +129,18 @@ const routes = [
     path: "/create-author",
     name: "Create Author",
     component: createAuthorView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/shopping-cart",
+    name: "Shopping Cart",
+    component: ShoppingCartView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/orders-list",
+    name: "Orders",
+    component: OrdersView,
     meta: { requiresAuth: true },
   },
 ];

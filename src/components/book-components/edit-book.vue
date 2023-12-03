@@ -257,6 +257,7 @@ export default {
             );
             if (response.status === 200) {
               console.log("Book was successfully updated");
+              await router.push("/books");
             }
           } catch (error) {
             console.log("Error updating book");
@@ -267,7 +268,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.getBookById(this.bookId);
     this.getAuthors();
     this.getCollections();

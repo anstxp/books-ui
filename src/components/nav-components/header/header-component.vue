@@ -20,14 +20,14 @@
     <div class="icons" v-if="!isAdmin">
       <div id="search-btn" class="fas fa-search"></div>
       <a href="/contacts" class="fa-solid fa-address-book"></a>
-      <a href="#" class="fas fa-shopping-cart"></a>
+      <a href="/shopping-cart" class="fas fa-shopping-cart"></a>
       <a href="/user-home" class="fas fa-user"></a>
       <a href="/faq" class="fa-solid fa-circle-question"></a>
     </div>
     <div class="icons" v-else>
       <div id="search-btn" class="fas fa-search"></div>
       <a href="/contacts" class="fa-solid fa-address-book"></a>
-      <a href="#" class="fas fa-shopping-cart"></a>
+      <a href="/orders-list" class="fas fa-shopping-cart"></a>
       <a href="/user-home" class="fas fa-user"></a>
       <a href="/faq" class="fa-solid fa-circle-question"></a>
     </div>

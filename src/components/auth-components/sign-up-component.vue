@@ -150,33 +150,8 @@ export default {
   mixins: [helper],
   data() {
     return {
-      user: {
-        // username: "",
-        // name: "",
-        // surname: "",
-        // gender: "",
-        // date: "",
-        // phone: "",
-        // email: "",
-        // password: "",
-        // genre: "not selected",
-        // file: "",
-        // checked: false,
-      },
-      msg: {
-        // username: "",
-        // name: "",
-        // surname: "",
-        // gender: "",
-        // date: "",
-        // phone: "",
-        // email: "",
-        // password: "",
-        // file: "",
-        // signup: "",
-      },
-      isFormValid: false,
-      showErrors: false,
+      user: {},
+      msg: {},
     };
   },
   watch: {
@@ -204,9 +179,6 @@ export default {
     "user.password": function () {
       this.msg.password = this.validatePassword(this.user.password);
     },
-    "user.file": function () {
-      this.msg.file = this.validateFile(true, this.user.file);
-    },
   },
   methods: {
     handleSubmission() {
@@ -225,8 +197,6 @@ export default {
             genre: "not selected",
             file: "",
           };
-          this.isFormValid = true;
-          this.showErrors = false;
         });
       }
     },
@@ -267,7 +237,7 @@ export default {
         email: this.user.email,
         firstName: this.user.name,
         lastName: this.user.surname,
-        birthdate: this.formatDate(this.user.date),
+        birthdate: this.reformatDate(this.user.date),
         gender: this.user.gender,
         genre: this.user.genre,
         profilePhotoUrl: this.user.file,

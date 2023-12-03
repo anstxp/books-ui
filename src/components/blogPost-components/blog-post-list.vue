@@ -18,7 +18,7 @@ export default {
       if (this.$store.state.isAuth) {
         return this.$store.state.blogsModule.blogs;
       } else {
-        return this.$store.state.blogsModule.blogs.slice(3);
+        return this.$store.state.blogsModule.blogs.slice(2);
       }
     },
   },

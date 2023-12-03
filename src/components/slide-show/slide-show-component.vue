@@ -58,7 +58,7 @@ export default {
 .fullscreen-gallery {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,8 +67,8 @@ export default {
 .fullscreen-gallery img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Обрізаємо зображення */
-  object-position: center; /* Центруємо зображення */
+  object-fit: cover;
+  object-position: center;
   cursor: pointer;
 }
 

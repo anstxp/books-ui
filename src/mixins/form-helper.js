@@ -14,7 +14,7 @@ export default {
       }
     },
     validateContent(content) {
-      if (/^[a-zA-Z\s]{20,}$/.test(content)) {
+      if (content.length > 15) {
         return "";
       } else {
         return "this field must contain at least 20 characters";
@@ -79,14 +79,14 @@ export default {
       if (/^\d{10}$/.test(isbn)) {
         return "";
       } else {
-        return "invalid isbn";
+        return "Invalid ISBN";
       }
     },
     validatePageCount(pageCount) {
       if (/^[1-9][0-9]*$/.test(pageCount)) {
         return "";
       } else {
-        return "invalid isbn";
+        return "Invalid page count";
       }
     },
     //

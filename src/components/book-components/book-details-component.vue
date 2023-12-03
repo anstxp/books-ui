@@ -17,10 +17,15 @@
             <p><strong>ISBN:</strong> {{ book.isbn }}</p>
             <p><strong>Page Count:</strong> {{ book.pageCount }}</p>
             <p><strong>Price:</strong> ${{ book.price }}</p>
-            <input type="submit" class="btn-small" value="Add to cart" />
+            <input
+              @click="addToCart(book.id)"
+              type="submit"
+              class="btn-small"
+              value="Add to cart"
+            />
           </div>
         </div>
-        <div class="add-comment">
+        <div v-if="this.$store.state.isAuth" class="add-comment">
           <h2>Add a Comment:</h2>
           <form @submit.prevent="handleSubmission">
             <div class="form">
@@ -72,7 +77,12 @@ export default {
       },
     };
   },
-  mounted() {
+  watch: {
+    "comment.content": function () {
+      this.msg.content = this.validateContent(this.comment.content);
+    },
+  },
+  created() {
     this.fetchBook();
   },
   methods: {
@@ -88,26 +98,12 @@ export default {
       });
     },
     handleSubmission() {
-      console.log("handleSubmission");
-      this.showErrors = true;
-      this.validateContent();
-
       if (Object.values(this.msg).every((message) => message === "")) {
         console.log("handleSubmission2");
         this.addComment();
         this.comment = {
           content: "",
         };
-        this.isFormValid = true;
-        this.showErrors = false;
-      }
-    },
-    validateContent() {
-      console.log("validateContent");
-      if (/^.{20,}$/.test(this.comment.content)) {
-        this.msg.content = "";
-      } else {
-        this.msg.content = "content must be at least 20 characters";
       }
     },
     async fetchBook() {
@@ -141,6 +137,18 @@ export default {
       } catch (error) {
         console.error("Error fetching book:", error);
       }
+    },
+    addToCart(bookId) {
+      this.$store
+        .dispatch("addToCart", { bookId })
+        .then((cart) => {
+          router.push("/shopping-cart");
+          console.log("Товар успішно додано до кошика:", cart);
+        })
+        .catch((error) => {
+          console.error("Помилка додавання товару до кошика:", error);
+          router.push("/shopping-cart");
+        });
     },
   },
 };

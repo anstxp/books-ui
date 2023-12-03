@@ -6,6 +6,8 @@ import authorsModule from "@/store/modules/authors-module";
 import categoriesModule from "@/store/modules/categories-module";
 import collectionsModule from "@/store/modules/collections-module";
 import blogsModule from "@/store/modules/blogs-module";
+import cartModule from "@/store/modules/cart-module";
+import orderModule from "@/store/modules/order-module";
 export default createStore({
   state: {
     isAuth: false,
@@ -43,7 +45,7 @@ export default createStore({
       localStorage.removeItem("isAuth");
     },
     searchInput(state, input) {
-      console.log("searchInput");
+      console.log(input);
       state.search = input;
       localStorage.setItem("isAuth", input);
     },
@@ -83,6 +85,8 @@ export default createStore({
     categoriesModule,
     collectionsModule,
     blogsModule,
+    cartModule,
+    orderModule,
   },
   plugins: [
     (store) => {

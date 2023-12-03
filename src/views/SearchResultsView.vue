@@ -8,9 +8,13 @@ import BottomNavbarComponent from "@/components/nav-components/bottom-navbar/bot
 import FooterComponent from "@/components/nav-components/footer/footer-component.vue";
 import axios from "axios";
 import { mapState } from "vuex";
+import SmallHeaderView from "@/components/UI/header-view/small-header-view.vue";
+import CollegeComponent from "@/components/UI/college/college-component.vue";
 
 export default defineComponent({
   components: {
+    CollegeComponent,
+    SmallHeaderView,
     FooterComponent,
     BottomNavbarComponent,
     NavbarComponent,
@@ -18,6 +22,16 @@ export default defineComponent({
     BookItemComponent,
     SwiperSlide,
     Swiper,
+  },
+  data() {
+    return {
+      contentProp: [
+        {
+          title: "Unfortunately nothing was found, try again!",
+          image: "/slide7.webp",
+        },
+      ],
+    };
   },
   mounted() {
     this.searchBooks();
@@ -38,7 +52,7 @@ export default defineComponent({
   },
   computed: {
     ...mapState({
-      booksSearch: (state) => state.booksSearch, // Підставте сюди ваш ключ стану
+      booksSearch: (state) => state.booksSearch,
     }),
   },
   setup() {
@@ -60,10 +74,10 @@ export default defineComponent({
   <HeaderComponent />
   <NavbarComponent />
   <BottomNavbarComponent />
-  <div class="search-results-inner">
+  <section>
     <swiper
-      :slides-per-view="5"
-      :space-between="5"
+      :slides-per-view="'auto'"
+      :space-between="1"
       navigation
       :pagination="{ clickable: true }"
       @swiper="onSwiper"
@@ -73,8 +87,12 @@ export default defineComponent({
         <BookItemComponent :book="book" class="book-item"></BookItemComponent>
       </swiper-slide>
     </swiper>
+  </section>
+  <div>
+    <SmallHeaderView :content="contentProp" v-if="booksSearch.length < 1" />
+    <CollegeComponent />
+    <FooterComponent />
   </div>
-  <FooterComponent />
 </template>
 
 <style scoped lang="scss"></style>

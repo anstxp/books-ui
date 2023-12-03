@@ -3,7 +3,7 @@
     <div class="first-half">
       <div class="text-center">
         <h2>{{ currentContent.title }}</h2>
-        <p>
+        <p v-if="show">
           {{ currentContent.body }}
         </p>
       </div>
@@ -21,6 +21,7 @@ export default {
       type: Array,
       required: true,
     },
+    show: Boolean,
   },
   data() {
     return {
@@ -53,7 +54,7 @@ export default {
 }
 
 .first-half {
-  flex: 4.3;
+  flex: 4.5;
   background-color: #f0f0f0;
   padding: 20px;
   height: 250px;
@@ -68,18 +69,21 @@ export default {
 }
 
 .text-center h2 {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   color: var(--black);
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 .text-center p {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--black);
   text-transform: none;
+  margin-left: 5px;
 }
 
 .second-half {
-  flex: 5.7;
+  flex: 5.5;
 }
 
 .second-half img {

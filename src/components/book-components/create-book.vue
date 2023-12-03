@@ -6,7 +6,7 @@
       novalidate
       @submit.prevent="handleSubmission"
     >
-      <h3>Edit Book</h3>
+      <h3>Create Book</h3>
       <span>title</span>
       <input
         type="text"
@@ -185,7 +185,7 @@ export default {
       this.msg.title = this.validateName(this.book.title);
     },
     "book.description": function () {
-      this.msg.description = this.validateName(this.book.description);
+      this.msg.description = this.validateContent(this.book.description);
     },
     "book.isbn": function () {
       this.msg.isbn = this.validateISBN(this.book.isbn);
@@ -209,12 +209,11 @@ export default {
       this.msg.authors = this.validateArray(this.book.authors);
     },
     "book.file": function () {
-      this.msg.file = this.validateFile(false, this.user.file);
+      this.msg.file = this.validateFile(false, this.$refs.fileInput.files[0]);
     },
   },
   methods: {
     handleFileUpload() {
-      console.log("handleFileUpload");
       return new Promise((resolve, reject) => {
         const file = this.$refs.fileInput.files[0];
         if (file == null) {
@@ -244,6 +243,17 @@ export default {
       });
     },
     handleSubmission() {
+      this.msg.title = this.validateName(this.book.title);
+      this.msg.description = this.validateContent(this.book.description);
+      this.msg.isbn = this.validateISBN(this.book.isbn);
+      this.msg.pageCount = this.validatePageCount(this.book.pageCount);
+      this.msg.urlHadle = this.validateUrlHandle(this.book.urlHadle);
+      this.msg.price = this.validateForEmpty(this.book.price);
+      this.msg.categories = this.validateArray(this.book.categories);
+      this.msg.collections = this.validateArray(this.book.collections);
+      this.msg.authors = this.validateArray(this.book.authors);
+      this.msg.file = this.validateFile(false, this.$refs.fileInput.files[0]);
+
       if (Object.values(this.msg).every((message) => message === "")) {
         this.handleFileUpload().then(async () => {
           try {
@@ -258,6 +268,7 @@ export default {
               }
             );
             if (response.status === 201) {
+              this.$store.dispatch("fetchBooks");
               console.log("Book added successfully");
             }
           } catch (error) {
@@ -285,7 +296,7 @@ export default {
       return this.$store.state.user.userId;
     },
   },
-  mounted() {
+  created() {
     this.getCollections();
     this.getAuthors();
     this.getCategories();

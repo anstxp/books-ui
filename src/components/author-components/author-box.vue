@@ -23,8 +23,8 @@
         </button>
       </div>
       <swiper
-        :slides-per-view="3"
-        :space-between="2"
+        :slides-per-view="5"
+        :space-between="'auto'"
         navigation
         :pagination="{ clickable: true }"
         @swiper="onSwiper"
@@ -37,6 +37,53 @@
     </div>
   </section>
 </template>
+
+<script>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import BookItemComponent from "@/components/book-components/bookSmall-item-component.vue";
+import router from "@/router";
+export default {
+  components: { Swiper, SwiperSlide, BookItemComponent },
+  props: {
+    authors: {
+      type: Array,
+      required: true,
+    },
+  },
+  computed: {
+    isAdmin() {
+      return this.$store.state.user.roles.includes("admin");
+    },
+    token() {
+      return this.$store.state.user.jwtToken;
+    },
+  },
+  methods: {
+    deleteAuthor(id, token) {
+      console.log(id);
+      console.log(token);
+      this.$store.dispatch("deleteAuthor", { id, token });
+      router.push("/authors-table");
+    },
+    editAuthor(id) {
+      this.$store.commit("set_currentAuthor", id);
+      router.push("/edit-author");
+    },
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log("slide change");
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+    };
+  },
+};
+</script>
 
 <style scoped>
 .author-grid {
@@ -98,51 +145,39 @@
   border: 1px solid #ccc;
   color: #333;
 }
-</style>
+/* Планшет: один блок на повну ширину */
+@media screen and (max-width: 1024px) {
+  .author-info {
+    width: calc(100% - 20px);
+  }
+}
 
-<script>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import BookItemComponent from "@/components/book-components/bookSmall-item-component.vue";
-import router from "@/router";
-export default {
-  components: { Swiper, SwiperSlide, BookItemComponent },
-  props: {
-    authors: {
-      type: Array,
-      required: true,
-    },
-  },
-  computed: {
-    isAdmin() {
-      return this.$store.state.user.roles.includes("admin");
-    },
-    token() {
-      return this.$store.state.user.jwtToken;
-    },
-  },
-  methods: {
-    deleteAuthor(id, token) {
-      console.log(id);
-      console.log(token);
-      this.$store.dispatch("deleteAuthor", { id, token });
-      router.push("/authors-table");
-    },
-    editAuthor(id) {
-      this.$store.commit("set_currentAuthor", id);
-      router.push("/edit-author");
-    },
-  },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-    };
-  },
-};
-</script>
+/* Мобільні пристрої: блоки на повну ширину */
+@media screen and (max-width: 768px) {
+  .author-grid {
+    justify-content: center;
+  }
+  .author-info {
+    width: calc(100% - 40px);
+  }
+}
+
+/* Дуже малі екрани: блоки на повну ширину без відступів */
+@media screen and (max-width: 480px) {
+  .author-info {
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+
+  .buttons {
+    position: static;
+    margin-top: 15px;
+  }
+
+  .light-button {
+    display: block;
+    margin: 10px auto;
+  }
+}
+</style>

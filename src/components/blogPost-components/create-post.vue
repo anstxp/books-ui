@@ -96,10 +96,10 @@ export default {
       this.msg.title = this.validateName(this.post.title);
     },
     "post.content": function () {
-      this.msg.content = this.validateName(this.post.content);
+      this.msg.content = this.validateContent(this.post.content);
     },
     "post.file": function () {
-      this.msg.file = this.validateFile(false, this.user.file);
+      this.msg.file = this.validateFile(false, this.$refs.fileInput.files[0]);
     },
   },
   computed: {

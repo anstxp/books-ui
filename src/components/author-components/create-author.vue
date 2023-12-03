@@ -105,7 +105,7 @@ export default {
       this.msg.fullName = this.validateName(this.author.fullName);
     },
     "author.description": function () {
-      this.msg.description = this.validateName(this.author.description);
+      this.msg.description = this.validateContent(this.author.description);
     },
     "author.urlHandle": function () {
       this.msg.urlHandle = this.validateUrlHandle(this.author.urlHandle);
@@ -114,7 +114,7 @@ export default {
       this.msg.books = this.validateArray(this.author.books);
     },
     "author.file": function () {
-      this.msg.file = this.validateFile(false, this.author.file);
+      this.msg.file = this.validateFile(false, this.$refs.fileInput.files[0]);
     },
   },
   methods: {

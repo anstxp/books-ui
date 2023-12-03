@@ -15,7 +15,7 @@
         placeholder="enter your email"
         id=" "
       />
-      <div class="error-message" v-if="msg.email && showErrors">
+      <div class="error-message" v-if="msg.email">
         {{ msg.email }}
       </div>
       <span>password</span>
@@ -26,7 +26,7 @@
         placeholder="enter your password"
         id=""
       />
-      <div class="error-message" v-if="msg.password && showErrors">
+      <div class="error-message" v-if="msg.password">
         {{ msg.password }}
       </div>
       <input type="submit" value="submit" formaction="#" class="btn" />
@@ -56,8 +56,8 @@ export default {
       msg: {
         email: "",
         password: "",
-        login: "",
       },
+      loginError: "",
       isFormValid: false,
       showErrors: false,
     };
@@ -65,14 +65,15 @@ export default {
   watch: {
     "user.email": function () {
       this.msg.email = this.validateEmail(this.user.email);
+      this.loginError = "";
     },
     "user.password": function () {
       this.msg.password = this.validatePassword(this.user.password);
+      this.loginError = "";
     },
   },
   methods: {
     handleSubmission() {
-      this.showErrors = true;
       this.msg.email = this.validateEmail(this.user.email);
       this.msg.password = this.validatePassword(this.user.password);
 
@@ -97,7 +98,7 @@ export default {
         await router.push("/");
       } catch (error) {
         console.error(error);
-        this.msg.login =
+        this.loginError =
           "Something went wrong, check credentials and try again";
       }
     },
